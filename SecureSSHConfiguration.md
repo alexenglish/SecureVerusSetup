@@ -10,7 +10,7 @@ On most systems, the file you want to edit is located in: `/etc/ssh/sshd_config`
 
 Find the `PasswordAuthentication` line and change it from "yes" to "no".
 
-If you do not intend to log in as root (you can still configure to use sudo or su to escalate your privileges for administration) set the `PermitRootLogin` line to `no` and make sure it is uncommented.
+If you do not intend to log in as root (you can still configure to use sudo or su to escalate your privileges for administration) set the `PermitRootLogin` line to `no` and make sure it is uncommented. If you _do_ intend to login as root, you'll need to set this to `yes`, the other security measures will ensure this is secure. 
 
 To access ssh on this host from the outside world you'll need to set up port forwarding (more on this later). We recommend doing this on a nonstandard port and forwarding to the correct port number for the ssh service running on this computer. You may leave it as the default 22, or may change it to a nonstandard port. This is unlikely to make a big difference in security, but some tools/scanners/malware/attackers may simply look for the default port 22 and move on if it isn't open. If you'd like to change the port, find the line with `Port` and change it to the port number you'd like. This is optional, just remember to use the correct port number when setting up port forwarding.
 
@@ -59,9 +59,9 @@ Two-factor authentication is highly recommended. This would provide a code that 
         `auth required pam_google_authenticator.so`
       - This may be slightly different on other distributions but on debian-based that's what you need to change. 
   ii. 
-    in your `/etc/ssh/sshd_config`: 
-      - ensure that `ChallengeResponseAuthentication` and `UsePAM` are both set to "yes"
-      - Check if there's already an "AuthenticationMethods" directive, if yes then comment it out.
+    in your `/etc/ssh/sshd_config`
+      - ensure that `ChallengeResponseAuthentication` and `UsePAM` are both set to "yes". In some systems `ChallengeResponseAuthentication` doesn't exist, in this case set `KbdInteractiveAuthentication` is set to "yes"
+      - Check if there's already an `AuthenticationMethods` directive, if yes then comment it out.
       - At the bottom fo the file add the following:
         `AuthenticationMethods publickey,keyboard-interactive:pam`
     Then run `systemctl restart sshd` like before. 
