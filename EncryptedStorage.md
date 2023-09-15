@@ -1,5 +1,5 @@
 This method will allow you to create a file that will contain an encrypted volume, on which you'll create a filesystem that can be mounted like any other storage device.
-The tools to do this should generally be installed on most Debian/Ubuntu systems by default, if not or if using another system you may need to hunt them down in your package manager.
+The tools to do this should generally be installed on most Debian/Ubuntu systems by default, if not or if using another system you may need to hunt them down in your package manager. On a very bare-bones install you may need to install `cryptsetup`.
 DO NOT STORE YOUR ONLY COPY OF ANY CRITICAL DATA IN ONE OF THESE VAULTS. THEY ARE SAFE, THEY ARE SECURE, BUT ALWAYS HAVE A BACKUP. FILES AND DEVICES CAN BE CORRUPTED, AND PASSWORDS CAN BE FORGOTTEN OR MISPLACED. ALSO MAKE SURE YOU'VE PRACTICED WITH OPENING AND MOUNTING, THEN UNMOUNTING AND CLOSING BEFORE RELYING ON THIS SETUP, GET FAMILIAR WITH IT.
 
 *Please read this whole guide before starting as you'll benefit as you make decisions about how to name or size things.*
