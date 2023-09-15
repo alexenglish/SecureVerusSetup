@@ -159,4 +159,6 @@ For Android I recommend (and use) JuiceSSH. For iOS, I use “SSH FIles - Secure
 
 In general you'll generate a key in the app. You'll need to transmit this key to yourself to put in the authorized_keys file of the system you're accessing, as well as on jump-hosts, if you're using them.
 
-In JuiceSSH on Android if you tap on Manage Connections you can add hosts with lots of options provided via dropdowns. Configure jump hosts first and then when configuring the destination system(s) you can select the jump hosts as `Connect Via`. From the Manage Connections screen, if you swipe left (to go to the right) you'll be on the Identities screen where you can create ssh keys for authentication.
+In JuiceSSH on Android if you tap on Manage Connections you can add hosts with lots of options provided via dropdowns. Configure jump hosts first and then when configuring the destination system(s) you can select the jump hosts as `Connect Via`. From the Manage Connections screen, if you swipe left (to go to the right) you'll be on the Identities screen where you can create ssh keys for authentication. Also remember that if you are going to connect both from your private network and an outside network using your phone/device you'll need separate entries with the correct public/private addressing for each of those connections.
+
+It's also worth noting that a bluetooth keyboard can make a mobile ssh session much more usable.
