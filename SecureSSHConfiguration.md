@@ -126,5 +126,37 @@ ufw allow from IP.OF.JUMP.HOST to any port YOURSSHPORT proto tcp
 ufw enable
 ```
 
+### Port forwarding
+If you're on a private network (behind a router that issues private IP addresses) you'll need to enable port forwarding.
+
+The exact process varies greatly between different router manufacturers. Generally speaking you'll log into your router and probably somewhere in advanced settings you'll look for `Port Forwarding`.
+
+You'll want to add a rule/forward to the IP address of the system you'll connect to on your local network, on the port you configured for ssh there, and assign it a nonstandard port number for the external interface on the router.
+
+So, say you configure it to forward port 99991 on your external interface (public IP) to your system at perhaps 192.168.1.55, on port 22 (if you didn't set a nonstandard port number) - that means:
+* When you want to access your system from another system on the same private network, you'll access it as 192.168.1.55 on port 22.
+* When you want to access your system from a system outside of your private network you'll access it with your network's public IP address on port 99991.
+
+Make sure to set these port numbers and IPs accordingly in your `~/.ssh/config` file for easy access. If you have a laptop or cellphone that you'll use both on the private network and from other networks, you'll need to create multiple configurations then select the appropriate configuration for the connection you need.
+
+### Dynamic DNS
+On a typical residential connection your IP address is usually assigned dynamically, meaning it can change periodically, especially after a service outage, power interruption, or modem reset. There are a few ways to find your public IP address.
+
+The admin interface or a status interface for your router may tell you. If you have the `dnsutils` package installed (or otherwise have the `dig` command), you can run `dig +short myip.opendns.com @resolver1.opendns.com` to get your public IP address. You can also go to whatsmyip.com or a number of other sites that want to advertise to you.
+
+When you're connecting from outside the network this is the IP you'll use. But it's a good idea to set up a Dynamic DNS service so that when you're away from your network you have a way to discover the IP address in case it changes. Dynamic DNS usually means there is a service or scheduled task that runs on your computer, or a service you can configure in your router, that will keep a DNS service provider updated with your IP address so they can resolve a static URL to your network. In this way you can configure your ssh hosts in your configuration to point to that URL rather than an IP address and you should get connectivity even if your IP address has changed.
+
+Check your router to see if it integrates with any services for this.
+
+If you operate any domains check with your DNS provider to see if they have a DDNS solution you can utilize.
+
+Failing that, see this list for providers that might suit your needs: https://www.comparitech.com/net-admin/dynamic-dns-providers/
+
+The setup process will be different for every provider, so follow their documentation. When selecting providers make sure their solution is compatible with your operating system (a windows client won't help you on a Linux system).
+
 ### Mobile Apps
-For Android I recommend (and use) JuiceSSH. For iOS, I use “SSH FIles - Secure Shellfish” as it was the only one that really supported jump hosts as I expected it to. Unfortunately it’s not free though.  
+For Android I recommend (and use) JuiceSSH. For iOS, I use “SSH FIles - Secure Shellfish” as it was the only one that really supported jump hosts as I expected it to. Unfortunately it’s not free though.
+
+In general you'll generate a key in the app. You'll need to transmit this key to yourself to put in the authorized_keys file of the system you're accessing, as well as on jump-hosts, if you're using them.
+
+In JuiceSSH on Android if you tap on Manage Connections you can add hosts with lots of options provided via dropdowns. Configure jump hosts first and then when configuring the destination system(s) you can select the jump hosts as `Connect Via`. From the Manage Connections screen, if you swipe left (to go to the right) you'll be on the Identities screen where you can create ssh keys for authentication.
