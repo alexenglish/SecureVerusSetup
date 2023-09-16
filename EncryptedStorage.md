@@ -37,11 +37,26 @@ If you're creating this vault for securing Verus data, the recommended setup is 
 
 ### For option 1 - storing data directories
 Starting in your home directory - 
+#### Make the mount point and mount the filesystem
 ```
 mkdir vault
 sudo mount /dev/mapper/vaultcrypt vault
 ```
 
+#### Setting permissions
+Set the ownership (to root) and permissions of the vault file to make accidental overwrite more difficult.
+```
+sudo chown root:root vault.img
+sudo chmod 600 vault.img
+```
+
+Now update ownership and permissions of the mount to permit your user writing to it. Substitute your user name.
+```
+sudo chmod 700 vault
+sudo chown USERNAME:USERNAME
+```
+
+#### Setting up data directories
 If you've already run verusd, stop it if it's already running. Then:
 ```
 mv .komodo/VRSC vault/
@@ -96,6 +111,7 @@ sudo adduser verus
 And we'll confirm ownership of the home directory:
 ```
 sudo chown -R verus:verus /home/verus
+sudo chmod 700 /home/verus
 ```
 
 Now, when you log into the Verus user the entire home directory will be encrypted, so you can install and run Verus, bridgekeeper, and store any other files in the home directory and it will all be encrypted. If you log into this user account when the vault hasn't been mounted you'll find the home directory is empty, or you might have trouble logging in.
