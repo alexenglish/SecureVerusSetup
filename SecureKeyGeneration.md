@@ -58,4 +58,5 @@ You can export using `verus z_exportwallet myexport` to create an export file na
 # Storing Keys
 These are the recommended storage methods for a private key or seed phrase:
 * Stamping into metal plates and keeping them in a highly secure location
+* Paper wallets stored in very safe, secure places - the bar is higher for the quality of storage for paper because of its succeptibility to water damage or burning
 * Encrypted storage of the digital key data on MULTIPLE devices in multiple places, coupled with a robust and secure way to remember the password for the encrypted storage
