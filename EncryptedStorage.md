@@ -69,21 +69,21 @@ mkdir vault/VRSC
 
 Then link it up to its normal path:
 ```
-ln -s ~/vault/VRSC .komodo/VRSC
+ln -s ~/vault/VRSC .komodo/
 ```
 
 Same process for the .verus directory for pbaas/veth config/data:
 ```
-mv .verus vault/verus
+mv .verus/pbaas vault/
 ```
 or, if it doesn't exist yet:
 ```
-mkdir vault/verus
+mkdir vault/pbaas
 ```
 
 Thank link it:
 ```
-ln -s ~/vault/verus .verus
+ln -s ~/vault/pbaas .verus/pbaas
 ```
 
 Now your entire Verus data directory and pbaas/gateway config/data directories are in your encrypted volume. If you like you can also create other directories and files in the encrypted volume.
