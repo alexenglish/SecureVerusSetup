@@ -7,9 +7,9 @@ DO NOT STORE YOUR ONLY COPY OF ANY CRITICAL DATA IN ONE OF THESE VAULTS. THEY AR
 ## Creating the file and populating it with the encrypted volume
 Start by creating a file filled with random data in the size you'd like for your volume. The random data provides both some extra security (hard to know what is random data and what is encrypted data) and some plausible deniability about the utilization of space within the volume.
 
-In this case, we'll name the file vault.img, and we'll make it 30GB, specified as 30000 MB:
+In this case, we'll name the file vault.img, and we'll make it 200GB, specified as 200000 MB:
 ```
-dd if=/dev/urandom of=vault.img bs=1M count=30000
+dd if=/dev/urandom of=vault.img bs=1M count=200000
 ```
 
 Now create the encrypted volume in the file. It should prompt for a password twice:
