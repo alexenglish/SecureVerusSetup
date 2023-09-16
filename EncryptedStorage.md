@@ -14,7 +14,7 @@ dd if=/dev/urandom of=vault.img bs=1M count=200000
 
 Now create the encrypted volume in the file. It should prompt for a password twice:
 ```
-cryptsetup --verify-passphrase luksFormat vault.img
+sudo cryptsetup --verify-passphrase luksFormat vault.img
 ```
 
 ## Opening the volume, creating the filesystem
