@@ -44,7 +44,6 @@ It is advisable to use different SSH keys for unlocking and general system acces
 
 ## Caveat 3: Location, location, location
 The latest version of Debian (such as 12+), Ubuntu (22.04 LTS+), Linux Mint, and Pop!_OS uses the following new version config files and directories:
-
-New Directory: `/etc/dropbear/initramfs/`
-New config file: `/etc/dropbear/initramfs/dropbear.conf`
-New files containing public keys for public key authentication: `/etc/dropbear/initramfs/authorized_keys`
+- New Directory: `/etc/dropbear/initramfs/`
+- New config file: `/etc/dropbear/initramfs/dropbear.conf`
+- New files containing public keys for public key authentication: `/etc/dropbear/initramfs/authorized_keys`
