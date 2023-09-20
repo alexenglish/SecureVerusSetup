@@ -54,8 +54,7 @@ Two-factor authentication is highly recommended. This would provide a code that 
 3. Follow the prompts ensuring you verify that your code is indeed working.
 4. After getting your code set, you'll need to change two things.
     1. Edit `/etc/pam.d/ssh`:
-        - Under "# Standard Un*x authentication" comment out "@include common auth" and add under it: `auth required pam_google_authenticator.so`
-        - This may be slightly different on other distributions but on debian-based that's what you need to change.
+        - This may be slightly different on other distributions but on debian-based - Under "# Standard Un*x authentication" comment out "@include common auth" and add under it: `auth required pam_google_authenticator.so`
     2. In your `/etc/ssh/sshd_config`
         - ensure that `ChallengeResponseAuthentication` and `UsePAM` are both set to "yes". In some systems `ChallengeResponseAuthentication` doesn't exist, in this case set `KbdInteractiveAuthentication` is set to "yes"
         - Check if there's already an `AuthenticationMethods` directive, if yes then comment it out.
