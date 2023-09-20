@@ -41,3 +41,10 @@ Append that to the GRUB_CMDLINE_LINUX_DEFAULT parameter in `/etc/default/grub` a
 ## Caveat 2: SSH keys
 Older operating systems may not support ed25519 keys. You will need to use an inferior encryption, like rsa.
 It is advisable to use different SSH keys for unlocking and general system access. It simply makes it harder to gain access if somebody manages to get their hands on your hardware.
+
+## Caveat 3: Location, location, location
+The latest version of Debian (such as 12+), Ubuntu (22.04 LTS+), Linux Mint, and Pop!_OS uses the following new version config files and directories:
+
+New Directory: `/etc/dropbear/initramfs/`
+New config file: `/etc/dropbear/initramfs/dropbear.conf`
+New files containing public keys for public key authentication: `/etc/dropbear/initramfs/authorized_keys`
