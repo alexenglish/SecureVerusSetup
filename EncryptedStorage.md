@@ -9,7 +9,7 @@ Start by creating a file filled with random data in the size you'd like for your
 
 In this case, we'll name the file vault.img, and we'll make it 200GB, specified as 200000 MB:
 ```
-dd if=/dev/urandom of=vault.img bs=1M count=200000
+dd if=/dev/urandom of=vault.img bs=1M count=200000 status=progress
 ```
 
 Now create the encrypted volume in the file. It should prompt for a password twice:
