@@ -53,18 +53,14 @@ Two-factor authentication is highly recommended. This would provide a code that 
 2. As the user you'll be logging into as run `google-authenticator`.
 3. Follow the prompts ensuring you verify that your code is indeed working.
 4. After getting your code set, you'll need to change two things.
-  i. 
-    Edit `/etc/pam.d/ssh`:
-      - Under # Standard Un*x authentication comment out @include common auth and add under it:
-        `auth required pam_google_authenticator.so`
-      - This may be slightly different on other distributions but on debian-based that's what you need to change. 
-  ii. 
-    in your `/etc/ssh/sshd_config`
-      - ensure that `ChallengeResponseAuthentication` and `UsePAM` are both set to "yes". In some systems `ChallengeResponseAuthentication` doesn't exist, in this case set `KbdInteractiveAuthentication` is set to "yes"
-      - Check if there's already an `AuthenticationMethods` directive, if yes then comment it out.
-      - At the bottom fo the file add the following:
-        `AuthenticationMethods publickey,keyboard-interactive:pam`
-    Then run `systemctl restart sshd` like before. 
+    1. Edit `/etc/pam.d/ssh`:
+        - Under "# Standard Un*x authentication" comment out "@include common auth" and add under it: `auth required pam_google_authenticator.so`
+        - This may be slightly different on other distributions but on debian-based that's what you need to change.
+    2. In your `/etc/ssh/sshd_config`
+        - ensure that `ChallengeResponseAuthentication` and `UsePAM` are both set to "yes". In some systems `ChallengeResponseAuthentication` doesn't exist, in this case set `KbdInteractiveAuthentication` is set to "yes"
+        - Check if there's already an `AuthenticationMethods` directive, if yes then comment it out.
+        - At the bottom fo the file add the following: `AuthenticationMethods publickey,keyboard-interactive:pam`
+        - Then run `systemctl restart sshd` like before. 
 5. In a new shell, try to SSH back in. You should have a request for a passcode, make sure your 2FA code works. 
 
 Now you have a system with 2FA for SSH!
