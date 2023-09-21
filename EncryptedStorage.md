@@ -133,6 +133,14 @@ sudo mount /dev/mapper/vaultcrypt vault
 "vaultcrypt" is arbitrary here - you're naming the resource in /dev/mapper with the name at the end of the cryptsetup command and using it when mounting.
 The mount point ("vault" in the above) is whatever directory you chose as the mount location for your volume.
 
+You can also drop those commands (with whatever changes you need) into a shell script so they're automated for you. Create a a file at ~/bin/mountvault with the following contents, modified for any changes to your file names:
+```
+#!/bin/sh
+sudo cryptsetup open --type luks vault.img vaultcrypt
+sudo mount /dev/mapper/vaultcrypt vault
+```
+Then set the execute permission using `chmod +x ~/bin/mountvault`. Now you can run `mountvault` from your home directory and it will handle everything, prompting for your password, then the password for the encrypted volume.
+
 If you'd like to unmount and close the volume while keeping your system running, do:
 ```
 sudo umount vaultcrypt
