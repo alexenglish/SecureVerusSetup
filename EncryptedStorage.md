@@ -125,11 +125,13 @@ or specify another username to use that user. If you are logged in as root you c
 ## General Usage
 After you're all set up you'll have to know how to open/mount and unmount/close your volume for normal usage.
 
-On system startup you'll run (using the mount point you chose in option A or B above, and logged in as the appropriate user):
+If you named your image file and mount point as described above, you can open and mount your volume with:
 ```
 sudo cryptsetup open --type luks vault.img vaultcrypt
-sudo mount /dev/mapper/vaultcrypt <mount point>
+sudo mount /dev/mapper/vaultcrypt vault
 ```
+"vaultcrypt" is arbitrary here - you're naming the resource in /dev/mapper with the name at the end of the cryptsetup command and using it when mounting.
+The mount point ("vault" in the above) is whatever directory you chose as the mount location for your volume.
 
 If you'd like to unmount and close the volume while keeping your system running, do:
 ```
