@@ -53,7 +53,7 @@ sudo chmod 600 vault.img
 Now update ownership and permissions of the mount to permit your user writing to it. Substitute your user name.
 ```
 sudo chmod 700 vault
-sudo chown USERNAME:USERNAME
+sudo chown USERNAME:USERNAME vault
 ```
 
 #### Setting up data directories
